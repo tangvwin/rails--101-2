@@ -16,11 +16,20 @@ class GroupsController < ApplicationController
         def create
           @group= Group.new(group_params)
         if   @group.save
-          redirect to groups_path
+          redirect_to groups_path
         else
           render :new
         end
       end
+
+
+        def destroy
+          @group = Group.find(params[:id])
+          @group.destroy
+          redirect_to groups_path
+          flash[:alert] = "Group delete"
+        end
+
 
 
        private
